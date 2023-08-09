@@ -1,0 +1,12 @@
+// abstracts
+@import "./abstracts/mixins.scss"; // 믹스인
+@import "./abstracts/variables.scss"; // 믹스인
+
+// base
+@import "./base/common.scss"; // 공통
+@import "./base/reset.scss"; // 리셋
+@import "./base/typography.scss"; // 글꼴
+
+// components
+
+// layout
