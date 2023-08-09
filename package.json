@@ -1,18 +1,22 @@
 {
-  "name": "001_kdt0_js_photo_board",
-  "version": "1.0.0",
-  "description": "패스트캠퍼스 X 야놀자 프론트엔드 부트캠프 5기 Javascript 과제 프로젝트입니다.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/preset-flow": "^7.22.5",
-    "parcel": "^2.9.3"
-  },
-  "dependencies": {
-    "firebase": "^10.1.0"
-  }
+    "name": "001_kdt0_js_photo_board",
+    "version": "1.0.0",
+    "description": "패스트캠퍼스 X 야놀자 프론트엔드 부트캠프 5기 Javascript 과제 프로젝트입니다.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "parcel ./index.html",
+        "build": "parcel build ./index.html"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/preset-flow": "^7.22.5",
+        "cssnano": "^6.0.1",
+        "parcel": "^2.9.3",
+        "postcss": "^8.4.27",
+        "sass": "^1.64.2"
+    },
+    "dependencies": {
+        "firebase": "^10.1.0"
+    }
 }
