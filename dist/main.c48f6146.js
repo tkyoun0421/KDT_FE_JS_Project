@@ -137,9 +137,12 @@ var Component = /*#__PURE__*/function () {
     var _payload$tagName = payload.tagName,
       tagName = _payload$tagName === void 0 ? "div" : _payload$tagName,
       _payload$state = payload.state,
-      state = _payload$state === void 0 ? {} : _payload$state;
+      state = _payload$state === void 0 ? {} : _payload$state,
+      _payload$props = payload.props,
+      props = _payload$props === void 0 ? {} : _payload$props;
     this.el = document.createElement(tagName);
     this.state = state;
+    this.props = props;
     this.render();
   }
   _createClass(Component, [{
