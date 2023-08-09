@@ -1,8 +1,8 @@
 ---
-name: Bug
-about: 버그 사항 이슈
-title: ":beetle: [ BUG ] : "
-labels: bug
+name: Design
+about: 디자인 개발 사항 이슈
+title: ":art: [ Disign ]: "
+labels: Design
 assignees: tkyoun0421
 
 ---
