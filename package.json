@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-flow": "^7.22.5",
     "parcel": "^2.9.3"
   },
   "dependencies": {
