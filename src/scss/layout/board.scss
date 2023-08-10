@@ -65,6 +65,10 @@
                             flex: 0 1 15rem;
                             display: flex;
                             justify-content: center;
+                            img {
+                                width: 8rem;
+                                height: 8rem;
+                            }
                         }
                         .board_list_item--name {
                             flex: 0 1 8rem;
