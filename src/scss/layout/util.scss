@@ -1,0 +1,56 @@
+.util {
+    padding: 2.6rem 0;
+    .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .util_btns {
+            display: flex;
+            gap: 1.5rem;
+            .util_btn {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 11.7rem;
+                height: 5rem;
+                border-radius: 0.5rem;
+                font-weight: 700;
+                font-size: 1.7rem;
+            }
+            .util_btn--registration {
+                background-color: #0071e3;
+                color: #fff;
+            }
+            .util_btn--delete {
+                background-color: #dedede;
+                color: #909090;
+            }
+        }
+        .util_input {
+            .util_input_wrap {
+                display: flex;
+                align-items: center;
+                height: 3.2rem;
+                border: 1px solid #d2d2d7;
+                border-radius: 0.4rem;
+                i {
+                    font-size: 1.8rem;
+                    padding-left: 1.4rem;
+                    color: #d2d2d7;
+                }
+                input {
+                    padding-left: 0.8rem;
+                    border: none;
+                    width: 31rem;
+                }
+                input:focus {
+                    outline: none;
+                }
+                input::placeholder {
+                    font-size: 1.3rem;
+                    color: #d2d2d7;
+                }
+            }
+        }
+    }
+}

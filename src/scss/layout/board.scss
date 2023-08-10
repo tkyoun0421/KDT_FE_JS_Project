@@ -1,0 +1,87 @@
+.board {
+    .inner {
+        .board_title {
+            display: flex;
+            align-items: center;
+            height: 4.8rem;
+            border: 1px solid #d2d2d7;
+            font-size: 1.4rem;
+            font-weight: 500;
+            .board_title--checkbox {
+                flex: 0 1 5rem;
+                display: flex;
+                justify-content: center;
+            }
+            .board_title--img {
+                flex: 0 1 15rem;
+                display: flex;
+                justify-content: center;
+            }
+            .board_title--name {
+                flex: 0 1 8rem;
+                display: flex;
+                justify-content: center;
+            }
+            .board_title--email {
+                flex: 0 1 30rem;
+                display: flex;
+                justify-content: center;
+            }
+            .board_title--phone {
+                flex: 0 1 30rem;
+                display: flex;
+                justify-content: center;
+            }
+            .board_title--rank {
+                flex: 1 0 8rem;
+                display: flex;
+                justify-content: center;
+            }
+        }
+        .board_list {
+            li {
+                height: 13rem;
+                display: flex;
+                align-items: center;
+                a {
+                    width: 100%;
+                    display: inline-block;
+                    font-size: 1.4rem;
+                    .board_list_item {
+                        display: flex;
+                        .board_list_item--checkbox {
+                            flex: 0 1 5rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .board_list_item--img {
+                            flex: 0 1 15rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .board_list_item--name {
+                            flex: 0 1 8rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .board_list_item--email {
+                            flex: 0 1 30rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .board_list_item--phone {
+                            flex: 0 1 30rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .board_list_item--rank {
+                            flex: 1 0 8rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

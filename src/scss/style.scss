@@ -8,5 +8,9 @@
 @import "./base/typography.scss"; // 글꼴
 
 // components
+@import "./components/checkbox.scss"; //체크박스
 
 // layout
+@import "./layout/header.scss"; // 헤더
+@import "./layout/util.scss"; // 유틸
+@import "./layout/board.scss"; // 게시판

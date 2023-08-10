@@ -1,0 +1,29 @@
+#header {
+    height: 5rem;
+    border-bottom: 1px solid rgba(29, 29, 29, 10%);
+    .inner {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+            h1 {
+                font-weight: 500;
+                font-size: 2.1rem;
+            }
+        }
+        .login {
+            a {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                font-size: 1.2rem;
+                width: 5.2rem;
+                height: 2.6rem;
+                border-radius: 5rem;
+                background-color: #0071e3;
+            }
+        }
+    }
+}
