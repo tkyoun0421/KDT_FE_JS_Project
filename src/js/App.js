@@ -1,12 +1,9 @@
 import { Component } from "./core/core";
+import Header from "./components/Header";
 
 export default class App extends Component {
-    constructor() {
-        super({
-            tagName: "h1",
-        });
-    }
     render() {
-        this.el.textContent = "hello";
+        const routerView = document.createElement("router-view");
+        this.el.append(new Header().el, routerView);
     }
 }
