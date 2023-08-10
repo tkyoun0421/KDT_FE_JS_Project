@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Component = void 0;
+exports.Store = exports.Component = void 0;
 exports.createRouter = createRouter;
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -193,6 +193,38 @@ function createRouter(routes) {
     routeRender(routes);
   };
 }
+var Store = /*#__PURE__*/function () {
+  function Store(state) {
+    var _this = this;
+    _classCallCheck(this, Store);
+    this.state = {};
+    this.observers = {};
+    var _loop = function _loop(key) {
+      Object.defineProperty(_this.state, key, {
+        get: function get() {
+          return state[key];
+        },
+        set: function set(value) {
+          state[key] = value;
+          _this.observers[key].forEach(function (observer) {
+            return observer(value);
+          });
+        }
+      });
+    };
+    for (var key in state) {
+      _loop(key);
+    }
+  }
+  _createClass(Store, [{
+    key: "subscribe",
+    value: function subscribe(key, cb) {
+      Array.isArray(this.observers[key]) ? this.observers[key].push(cb) : this.observers[key] = [cb];
+    }
+  }]);
+  return Store;
+}();
+exports.Store = Store;
 },{}],"src/js/components/Header.js":[function(require,module,exports) {
 "use strict";
 
