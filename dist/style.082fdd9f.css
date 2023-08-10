@@ -1,3 +1,8 @@
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .inner {
   max-width: 102.4rem;
   margin: 0 auto;
@@ -159,6 +164,7 @@ button {
 
 img {
   user-select: unset;
+  object-fit: cover;
 }
 
 html {
@@ -170,6 +176,11 @@ body {
   font-size: 1rem;
 }
 
+button,
+input {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
 .checkbox {
   width: 1.5rem;
   height: 1.5rem;
@@ -177,7 +188,7 @@ body {
 }
 
 #header {
-  height: 5rem;
+  height: 5.2rem;
   border-bottom: 1px solid rgba(29, 29, 29, 0.1);
 }
 #header .inner {
@@ -189,6 +200,11 @@ body {
 #header .inner .logo h1 {
   font-weight: 500;
   font-size: 2.1rem;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  #header .inner .logo h1 {
+    font-size: 1.8rem;
+  }
 }
 #header .inner .login a {
   display: inline-flex;
@@ -205,10 +221,21 @@ body {
 .util {
   padding: 2.6rem 0;
 }
+@media (min-width: 0) and (max-width: 640px) {
+  .util {
+    padding: 2rem 0;
+  }
+}
 .util .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .util .inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 .util .inner .util_btns {
   display: flex;
@@ -218,11 +245,11 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 11.7rem;
+  width: 10.7rem;
   height: 5rem;
   border-radius: 0.5rem;
   font-weight: 700;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 .util .inner .util_btns .util_btn--registration {
   background-color: #0071e3;
@@ -232,12 +259,22 @@ body {
   background-color: #dedede;
   color: #909090;
 }
+@media (min-width: 0) and (max-width: 640px) {
+  .util .inner .util_input {
+    width: 100%;
+  }
+}
 .util .inner .util_input .util_input_wrap {
   display: flex;
   align-items: center;
   height: 3.2rem;
   border: 1px solid #d2d2d7;
   border-radius: 0.4rem;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .util .inner .util_input .util_input_wrap {
+    width: 100%;
+  }
 }
 .util .inner .util_input .util_input_wrap i {
   font-size: 1.8rem;
@@ -249,6 +286,11 @@ body {
   border: none;
   width: 31rem;
 }
+@media (min-width: 0) and (max-width: 640px) {
+  .util .inner .util_input .util_input_wrap input {
+    width: 100%;
+  }
+}
 .util .inner .util_input .util_input_wrap input:focus {
   outline: none;
 }
@@ -257,6 +299,19 @@ body {
   color: #d2d2d7;
 }
 
+.board {
+  width: 100%;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .board {
+    overflow-x: scroll;
+  }
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .board .inner {
+    width: 102.4rem;
+  }
+}
 .board .inner .board_title {
   display: flex;
   align-items: center;
@@ -286,7 +341,7 @@ body {
   justify-content: center;
 }
 .board .inner .board_title .board_title--phone {
-  flex: 0 1 30rem;
+  flex: 0 1 20rem;
   display: flex;
   justify-content: center;
 }
@@ -329,7 +384,7 @@ body {
   justify-content: center;
 }
 .board .inner .board_list li a .board_list_item .board_list_item--phone {
-  flex: 0 1 30rem;
+  flex: 0 1 20rem;
   display: flex;
   justify-content: center;
 }
@@ -337,6 +392,80 @@ body {
   flex: 1 0 8rem;
   display: flex;
   justify-content: center;
+}
+
+.profile {
+  padding-top: 3rem;
+}
+.profile .inner {
+  display: flex;
+  gap: 5rem;
+}
+.profile .inner .profile_img_wrap {
+  width: 25rem;
+  height: 25rem;
+}
+.profile .inner .profile_img_wrap img {
+  width: 100%;
+  height: 100%;
+}
+.profile .inner .profile_text_wrap {
+  width: calc(100% - 35rem);
+}
+.profile .inner .profile_text_wrap .profile_header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #474747;
+}
+.profile .inner .profile_text_wrap .profile_header h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+.profile .inner .profile_text_wrap .profile_header .backdoor .back {
+  font-size: 1.4rem;
+}
+.profile .inner .profile_text_wrap .profile_info {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+.profile .inner .profile_text_wrap .profile_info .profile_info_item {
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+}
+.profile .inner .profile_text_wrap .profile_info .profile_info_item .profile_info_title {
+  flex: 0 0 12rem;
+  font-weight: 500;
+  color: #878787;
+}
+.profile .inner .profile_text_wrap .profile_info .profile_info_item input {
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: #000;
+}
+.profile .inner .profile_text_wrap .profile_btn_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.profile .inner .profile_text_wrap .profile_btn_wrap .profile_info_edit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 10.7rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  background-color: #0071e3;
+  color: #fff;
+  margin-top: 5rem;
 }
 
 /*# sourceMappingURL=/style.082fdd9f.css.map */

@@ -1,6 +1,6 @@
 // abstracts
 @import "./abstracts/mixins.scss"; // 믹스인
-@import "./abstracts/variables.scss"; // 믹스인
+@import "./abstracts/variables.scss"; // 변수
 
 // base
 @import "./base/common.scss"; // 공통
@@ -14,3 +14,4 @@
 @import "./layout/header.scss"; // 헤더
 @import "./layout/util.scss"; // 유틸
 @import "./layout/board.scss"; // 게시판
+@import "./layout/profile.scss"; // 프로필

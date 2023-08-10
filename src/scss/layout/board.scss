@@ -1,5 +1,12 @@
 .board {
+    width: 100%;
+    @include isMobile() {
+        overflow-x: scroll;
+    }
     .inner {
+        @include isMobile() {
+            width: 102.4rem;
+        }
         .board_title {
             display: flex;
             align-items: center;
@@ -28,7 +35,7 @@
                 justify-content: center;
             }
             .board_title--phone {
-                flex: 0 1 30rem;
+                flex: 0 1 20rem;
                 display: flex;
                 justify-content: center;
             }
@@ -70,7 +77,7 @@
                             justify-content: center;
                         }
                         .board_list_item--phone {
-                            flex: 0 1 30rem;
+                            flex: 0 1 20rem;
                             display: flex;
                             justify-content: center;
                         }
