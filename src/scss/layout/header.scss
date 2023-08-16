@@ -1,31 +1,23 @@
 #header {
-    height: 5.2rem;
-    border-bottom: 1px solid rgba(29, 29, 29, 10%);
-    .inner {
-        height: 100%;
+    background-color: $grayFA;
+    color: $black28;
+    .container {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        .logo {
-            h1 {
-                font-weight: 500;
-                font-size: 2.1rem;
-                @include isMobile() {
-                    font-size: 1.8rem;
-                }
+        padding: 1.6rem 1.6rem 0.8rem;
+        .header-left {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            .logo {
+                width: 3.2rem;
+                height: 3.2rem;
             }
-        }
-        .login {
-            a {
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                color: #fff;
-                font-size: 1.2rem;
-                width: 5.2rem;
-                height: 2.6rem;
-                border-radius: 5rem;
-                background-color: #0071e3;
+            .user-id {
+                font-size: 1.4rem;
+                cursor: pointer;
+                font-weight: 600;
             }
         }
     }

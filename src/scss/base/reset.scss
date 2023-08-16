@@ -120,7 +120,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
+    content: '';
     content: none;
 }
 table {
@@ -141,6 +141,8 @@ button {
     box-sizing: border-box;
 }
 img {
+    width: 100%;
+    height: 100%;
     user-select: unset;
     object-fit: cover;
 }

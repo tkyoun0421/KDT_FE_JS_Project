@@ -3,78 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>임직원 프로필 리스트</title>
+        <title>쿠키 임직원</title>
         <link rel="stylesheet" href="/style.082fdd9f.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/97e703ac45.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="https://cdn.icon-icons.com/icons2/1494/PNG/512/cookies_102939.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="/style.082fdd9f.js"></script></head>
     <body>
         <header id="header">
-            <div class="inner">
-                <div class="logo">
-                    <h1>임직원 프로필 리스트</h1>
+            <div class="container">
+                <div class="header-left">
+                    <h1 class="logo">
+                        <a href="/index.html"><img src="/logo.0b63b488.png" alt="로고" loading="lazy"></a>
+                    </h1>
+                    <div class="user-id btn">ID</div>
                 </div>
-                <div class="login">
-                    <a href="javascript:void(0)">로그인</a>
-                </div>
-            </div>
-        </header>
-        <section class="util">
-            <div class="inner">
-                <div class="util_btns">
-                    <button class="util_btn util_btn--registration" type="button">
-                        임직원 등록
-                    </button>
-                    <button class="util_btn util_btn--delete" type="button">
-                        임직원 삭제
-                    </button>
-                </div>
-                <div class="util_input">
-                    <div class="util_input_wrap">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="이름 또는 이메일로 검색하기">
+                <div class="header-right">
+                    <div class="login">
+                        <button class="btn btn-login" type="button">
+                            로그인
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="board">
-            <div class="inner">
-                <ul class="board_title">
-                    <li class="board_title--checkbox">
-                        <input class="checkbox" type="checkbox" name="board_title_checkbox" id="board_title_checkbox">
-                    </li>
-                    <li class="board_title--img">프로필 사진</li>
-                    <li class="board_title--name">이름</li>
-                    <li class="board_title--email">이메일</li>
-                    <li class="board_title--phone">휴대폰 번호</li>
-                    <li class="board_title--rank">직급</li>
-                </ul>
-                <ul class="board_list">
-                    <li>
-                        <a href="/profile.html">
-                            <ul class="board_list_item">
-                                <li class="board_list_item--checkbox">
-                                    <input class="checkbox" type="checkbox" name="board_list_checkbox" id="board_list_checkbox">
-                                </li>
-                                <li class="board_list_item--img">
-                                    <img src="/john-doe.34fb3f00.jpg" alt="">
-                                </li>
-                                <li class="board_list_item--name">이지은</li>
-                                <li class="board_list_item--email">
-                                    tkyoun0421@naver.com
-                                </li>
-                                <li class="board_list_item--phone">
-                                    010-9259-4664
-                                </li>
-                                <li class="board_list_item--rank">사원</li>
-                            </ul>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
+        </header>
         <script type="module" defer="" src="/firebaseConfig.b609fd3d.js"></script>
         <script type="module" defer="" src="/main.c48f6146.js"></script>
     </body>

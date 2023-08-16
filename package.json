@@ -11,8 +11,10 @@
     "license": "ISC",
     "devDependencies": {
         "@babel/preset-flow": "^7.22.5",
+        "@parcel/transformer-sass": "^2.9.3",
         "cssnano": "^4.1.11",
         "parcel": "^2.9.3",
+        "process": "^0.11.10",
         "sass": "^1.64.2"
     },
     "dependencies": {

@@ -3,11 +3,11 @@ body {
     overflow-x: hidden;
 }
 
-.inner {
-    max-width: 102.4rem;
-    margin: 0 auto;
-    padding: 0 2.2rem;
-    @include isMobile() {
-        padding: 0 1rem;
-    }
+.btn {
+    padding: 0.6rem 0.8rem;
+}
+
+.btn:hover {
+    border-radius: 0.6rem;
+    background-color: rgba(208, 215, 222, 0.32);
 }
