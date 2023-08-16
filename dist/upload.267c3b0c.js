@@ -122,7 +122,6 @@ var inputFileEl = document.querySelector('.input-file');
 inputFileEl.addEventListener('change', function (e) {
   var imgEl = document.querySelector('.image');
   var file = e.target.files[0];
-  console.log(file);
   if (file) {
     var reader = new FileReader();
     reader.onload = function (event) {

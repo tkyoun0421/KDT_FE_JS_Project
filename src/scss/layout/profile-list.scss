@@ -28,8 +28,17 @@
         .profile-list-btm {
             margin-top: 2.4rem;
             display: flex;
-            gap: 2rem;
+            gap: 5.4rem;
             flex-wrap: wrap;
+            @include isMobile() {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            @include isMobile(450px) {
+                display: flex;
+                justify-content: center;
+            }
             .profile-item {
                 position: relative;
                 width: $itemWidth;

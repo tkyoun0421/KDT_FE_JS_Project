@@ -19,6 +19,7 @@
             src="https://kit.fontawesome.com/97e703ac45.js"
             crossorigin="anonymous"
         ></script>
+        <script type="module" defer src="./src/js/main.js"></script>
     </head>
     <body>
         <header id="header">
@@ -63,14 +64,14 @@
                             <input
                                 class="search-input"
                                 type="text"
-                                placeholder="이름 또는 이메일로 검색하기"
+                                placeholder="이름으로 검색하기"
                             />
                         </div>
                         <div class="util">
                             <a class="btn-add" href="upload.html"
                                 ><span>프로필 등록</span></a
                             >
-                            <button class="btn-delete" href="javascript:void">
+                            <button class="btn-delete" type="button">
                                 <span>프로필 삭제</span>
                             </button>
                         </div>
@@ -83,7 +84,5 @@
         <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-        <script type="module" defer src="./src/js/firebaseConfig.js"></script>
-        <script type="module" defer src="./src/js/main.js"></script>
     </body>
 </html>

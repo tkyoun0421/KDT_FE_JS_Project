@@ -136,96 +136,8 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 exports.db = db;
 var storage = firebase.storage();
-
-// function loadData() {
-//     db.collection('profile')
-//         .get()
-//         .then((res) => {
-//             res.forEach((doc) => {
-//                 const profileListBtmEl =
-//                     document.querySelector('.profile-list-btm');
-//                 const div = document.createElement('div');
-//                 let template = `<div class="profile-info">
-//                 <input
-//                 class="checkbox"
-//                 type="checkbox"
-//                 id="profile-item"
-//                 name="profile-item"
-//                 />
-//                 <span class="name">${doc.data().name}</span>
-//                 <span class="rank">${doc.data().rank}</span>
-//                 </div>
-//                 `;
-
-//                 div.classList.add('profile-item');
-//                 div.innerHTML = template;
-//                 profileListBtmEl.append(div);
-//                 div.style.backgroundImage = `url(${doc.data().photo})`;
-//             });
-//         });
-// }
-
-// loadData();
 exports.storage = storage;
-},{}],"src/js/main.js":[function(require,module,exports) {
-"use strict";
-
-var _firebase = require("./firebase");
-function loadData() {
-  _firebase.db.collection('profile').get().then(function (res) {
-    res.forEach(function (doc) {
-      var profileListBtmEl = document.querySelector('.profile-list-btm');
-      var div = document.createElement('div');
-      var template = "<div class=\"profile-info\">\n                <input\n                class=\"checkbox\"\n                type=\"checkbox\"\n                id=\"profile-item\"\n                name=\"profile-item\"\n                />\n                <span class=\"name\">".concat(doc.data().name, "</span>\n                <span class=\"rank\">").concat(doc.data().rank, "</span>\n                </div>\n                ");
-      div.classList.add('profile-item');
-      div.innerHTML = template;
-      profileListBtmEl.append(div);
-      div.style.backgroundImage = "url(".concat(doc.data().photo, ")");
-    });
-  });
-}
-loadData();
-
-// function uploadData() {
-//     const inputFileEl = document.querySelector('.input-file');
-//     const file = inputFileEl.files[0];
-//     const storageRef = storage.ref();
-//     const savePath = storageRef.child('image/' + file.name);
-//     const upload = savePath.put(file);
-
-//     const rankEl = document.querySelector('.input-rank');
-//     const nameEl = document.querySelector('.input-name');
-
-//     upload.on(
-//         'state_changed',
-//         null,
-//         (error) => {
-//             console.error('실패 사유는', error);
-//         },
-//         () => {
-//             upload.snapshot.ref.getDownloadURL().then((url) => {
-//                 let item = {
-//                     id: new Date().getTime(),
-//                     rank: rankEl.value,
-//                     name: nameEl.value,
-//                     photo: url,
-//                 };
-//                 db.collection('profile')
-//                     .add(item)
-//                     .then(() => {
-//                         window.location.href = './index.html';
-//                     })
-//                     .catch((error) => {
-//                         console.log(error);
-//                     });
-//             });
-//         }
-//     );
-// }
-
-// const btnSubmitEl = document.querySelector('.btn-submit');
-// btnSubmitEl.addEventListener('click', uploadData);
-},{"./firebase":"src/js/firebase.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -394,5 +306,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/main.js"], null)
-//# sourceMappingURL=/main.c48f6146.js.map
+},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/firebase.js"], null)
+//# sourceMappingURL=/firebase.766ed511.js.map

@@ -309,8 +309,21 @@ input::placeholder {
 .profile-list .inner .profile-list-btm {
   margin-top: 2.4rem;
   display: flex;
-  gap: 2rem;
+  gap: 5.4rem;
   flex-wrap: wrap;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .profile-list .inner .profile-list-btm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+@media (min-width: 0) and (max-width: 450px) {
+  .profile-list .inner .profile-list-btm {
+    display: flex;
+    justify-content: center;
+  }
 }
 .profile-list .inner .profile-list-btm .profile-item {
   position: relative;
