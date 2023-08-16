@@ -18,6 +18,7 @@
         "sass": "^1.64.2"
     },
     "dependencies": {
+        "config": "^3.3.9",
         "firebase": "^10.1.0"
     }
 }

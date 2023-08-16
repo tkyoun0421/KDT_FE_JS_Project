@@ -1,0 +1,333 @@
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.btn {
+  padding: 0.6rem 0.8rem;
+}
+
+.btn:hover {
+  border-radius: 0.6rem;
+  background-color: rgba(208, 215, 222, 0.32);
+}
+
+.inner {
+  max-width: 128rem;
+  margin: 0 auto;
+  margin-top: 2.4rem;
+  padding: 0 3.2rem;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
+
+*[hidden] {
+  display: none;
+}
+
+body {
+  line-height: 1;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: inherit;
+  border: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  user-select: unset;
+  object-fit: cover;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  color: #1f2328;
+  line-height: 1.5;
+}
+
+button,
+input {
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+}
+
+#header {
+  background-color: #f6f8fa;
+}
+#header .container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem 1.6rem 0.8rem;
+}
+#header .container .header-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+#header .container .header-left .logo {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+#header .container .header-left .user-id {
+  font-size: 1.4rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.notice .inner .text {
+  padding: 2.4rem;
+  border: 1px solid #f6f8fa;
+  border-radius: 0.6rem;
+  text-align: center;
+}
+.notice .inner .text p {
+  font-size: 1.4rem;
+}
+.notice .inner .text p span {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.profile-list .inner .profile-list-top {
+  display: flex;
+  gap: 1.6rem;
+}
+.profile-list .inner .profile-list-top .search {
+  position: relative;
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid rgb(208, 215, 222);
+  display: flex;
+  align-items: center;
+}
+.profile-list .inner .profile-list-top .search i {
+  position: absolute;
+  left: 0.8rem;
+  color: #656d76;
+  font-size: 1.2rem;
+}
+.profile-list .inner .profile-list-top .search input {
+  background-color: #f6f8fa;
+  border-top-right-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+  width: 100%;
+  border: none;
+  color: #656d76;
+  font-size: 1.4rem;
+  height: 100%;
+  padding: 0.5rem 1.2rem 0.5rem 3.2rem;
+}
+.profile-list .inner .profile-list-top .search input:focus {
+  background-color: #fff;
+}
+.profile-list .inner .profile-list-top .search input::placeholder {
+  font-size: 1.2rem;
+}
+.profile-list .inner .profile-list-top .util {
+  display: flex;
+  gap: 1rem;
+}
+.profile-list .inner .profile-list-top .util .btn-add {
+  display: flex;
+  align-items: center;
+  background-color: #1a7f37;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0 1.2rem;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.profile-list .inner .profile-list-top .util .btn-add:hover {
+  background-color: rgb(24, 116, 50);
+}
+.profile-list .inner .profile-list-top .util .btn-delete {
+  white-space: nowrap;
+  border-radius: 0.6rem;
+  border: 1px solid rgb(208, 215, 222);
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+.profile-list .inner .profile-list-top .util .btn-delete:hover {
+  background-color: #f6f8fa;
+}
+.profile-list .inner .profile-list-btm {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.profile-list .inner .profile-list-btm .profile-item {
+  position: relative;
+  width: 20rem;
+  height: 30rem;
+  border-radius: 0.6rem;
+  background-color: #656d76;
+  background-size: cover;
+  overflow: hidden;
+  cursor: pointer;
+}
+.profile-list .inner .profile-list-btm .profile-item .profile-info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  padding: 1.5rem 1.5rem;
+  color: #fff;
+  background-color: rgba(14, 17, 27, 0.3);
+  backdrop-filter: blur(10px);
+}
+.profile-list .inner .profile-list-btm .profile-item .profile-info span {
+  padding-left: 0.3rem;
+}
+
+/*# sourceMappingURL=/style.082fdd9f.css.map */
