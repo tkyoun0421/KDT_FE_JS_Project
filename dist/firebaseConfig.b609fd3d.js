@@ -4284,11 +4284,12 @@ var version = "10.1.0";
 "use strict";
 
 var _app = require("firebase/app");
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-// Your web app's Firebase configuration
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 var firebaseConfig = {
   apiKey: 'AIzaSyDBWZgf69JelbmqlPPPzj56W5yFL-Q5wZo',
   authDomain: 'project-1-8debf.firebaseapp.com',
@@ -4301,14 +4302,43 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
+var storage = firebase.storage();
 db.collection('profile').get().then(function (res) {
   res.forEach(function (doc) {
-    var profileItemEl = document.querySelector('.profile-list-btm');
+    var profileListBtmEl = document.querySelector('.profile-list-btm');
     var div = document.createElement('div');
+    var profileItemEls = _toConsumableArray(document.querySelectorAll('.profile-item'));
+    var template = "<div class=\"profile-info\">\n            <input\n            type=\"checkbox\"\n            id=\"profile-item\"\n            name=\"profile-item\"\n            />\n            <span class=\"name\">".concat(doc.data().name, "</span>\n            <span class=\"rank\">").concat(doc.data().rank, "</span>\n            </div>\n            ");
     div.classList.add('profile-item');
-    var template = "<div class=\"profile-info\">\n                    <input\n                        type=\"checkbox\"\n                        id=\"profile-item\"\n                        name=\"profile-item\"\n                    />\n                    <span class=\"name\">".concat(doc.data().name, "</span>\n                    <span class=\"rank\">").concat(doc.data().rank, "</span>\n                </div>\n            ");
     div.innerHTML = template;
-    profileItemEl.append(div);
+    profileListBtmEl.append(div);
+    div.style.backgroundImage = "url(".concat(doc.data().photo, ")");
+  });
+});
+var btnSubmitEl = document.querySelector('.btn-submit');
+btnSubmitEl.addEventListener('click', function () {
+  var inputFileEl = document.querySelector('.input-file');
+  var file = inputFileEl.files[0];
+  var storageRef = storage.ref();
+  var savePath = storageRef.child('image/' + file.name);
+  var upload = savePath.put(file);
+  var rankEl = document.querySelector('.input-rank');
+  var nameEl = document.querySelector('.input-name');
+  upload.on('state_changed', null, function (error) {
+    console.error('실패 사유는', error);
+  }, function () {
+    upload.snapshot.ref.getDownloadURL().then(function (url) {
+      var item = {
+        rank: rankEl.value,
+        name: nameEl.value,
+        photo: url
+      };
+      db.collection('profile').add(item).then(function () {
+        window.location.href = './index.html';
+      }).catch(function (error) {
+        console.log(error);
+      });
+    });
   });
 });
 },{"firebase/app":"node_modules/firebase/app/dist/esm/index.esm.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {

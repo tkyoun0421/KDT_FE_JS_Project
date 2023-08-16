@@ -3,15 +3,6 @@ body {
   overflow-x: hidden;
 }
 
-.btn {
-  padding: 0.6rem 0.8rem;
-}
-
-.btn:hover {
-  border-radius: 0.6rem;
-  background-color: rgba(208, 215, 222, 0.32);
-}
-
 .inner {
   max-width: 128rem;
   margin: 0 auto;
@@ -195,6 +186,62 @@ input {
   font-family: "Roboto", "Noto Sans KR", sans-serif;
 }
 
+.btn {
+  padding: 0.6rem 0.8rem;
+}
+
+.btn:hover {
+  border-radius: 0.6rem;
+  background-color: rgba(208, 215, 222, 0.32);
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  background-color: #1a7f37;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0 1.2rem;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.btn-add:hover {
+  background-color: rgb(24, 116, 50);
+}
+
+.btn-delete {
+  white-space: nowrap;
+  border-radius: 0.6rem;
+  border: 1px solid rgb(208, 215, 222);
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.btn-delete:hover {
+  background-color: #f6f8fa;
+}
+
+input[type=text] {
+  background-color: #f6f8fa;
+  border-top-right-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+  border: none;
+  color: #656d76;
+  font-size: 1.4rem;
+  height: 100%;
+  padding: 0.5rem 1.2rem 0.5rem 3.2rem;
+}
+
+input:focus {
+  background-color: #fff;
+}
+
+input::placeholder {
+  font-size: 1.2rem;
+}
+
 #header {
   background-color: #f6f8fa;
 }
@@ -253,49 +300,11 @@ input {
   font-size: 1.2rem;
 }
 .profile-list .inner .profile-list-top .search input {
-  background-color: #f6f8fa;
-  border-top-right-radius: 0.6rem;
-  border-bottom-right-radius: 0.6rem;
   width: 100%;
-  border: none;
-  color: #656d76;
-  font-size: 1.4rem;
-  height: 100%;
-  padding: 0.5rem 1.2rem 0.5rem 3.2rem;
-}
-.profile-list .inner .profile-list-top .search input:focus {
-  background-color: #fff;
-}
-.profile-list .inner .profile-list-top .search input::placeholder {
-  font-size: 1.2rem;
 }
 .profile-list .inner .profile-list-top .util {
   display: flex;
   gap: 1rem;
-}
-.profile-list .inner .profile-list-top .util .btn-add {
-  display: flex;
-  align-items: center;
-  background-color: #1a7f37;
-  color: #fff;
-  font-size: 1.4rem;
-  padding: 0 1.2rem;
-  border-radius: 0.6rem;
-  white-space: nowrap;
-  font-weight: 500;
-}
-.profile-list .inner .profile-list-top .util .btn-add:hover {
-  background-color: rgb(24, 116, 50);
-}
-.profile-list .inner .profile-list-top .util .btn-delete {
-  white-space: nowrap;
-  border-radius: 0.6rem;
-  border: 1px solid rgb(208, 215, 222);
-  font-weight: 500;
-  font-size: 1.4rem;
-}
-.profile-list .inner .profile-list-top .util .btn-delete:hover {
-  background-color: #f6f8fa;
 }
 .profile-list .inner .profile-list-btm {
   margin-top: 2.4rem;
@@ -310,6 +319,8 @@ input {
   border-radius: 0.6rem;
   background-color: #656d76;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
   cursor: pointer;
 }
@@ -328,6 +339,67 @@ input {
 }
 .profile-list .inner .profile-list-btm .profile-item .profile-info span {
   padding-left: 0.3rem;
+}
+
+.upload .inner {
+  max-width: 64rem;
+}
+.upload .inner form {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .upload .inner form {
+    flex-direction: column;
+  }
+}
+.upload .inner form .image-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.upload .inner form .image-wrap .image {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  border: 1px solid rgb(208, 215, 222);
+  background-size: cover;
+  overflow: hidden;
+}
+.upload .inner form .image-wrap input {
+  width: 30rem;
+  border: 1px solid rgb(208, 215, 222);
+  border-radius: 0.6rem;
+}
+.upload .inner form .text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .upload .inner form .text-wrap {
+    width: 100%;
+  }
+}
+.upload .inner form .text-wrap label {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+}
+.upload .inner form .text-wrap input {
+  width: 100%;
+  height: auto;
+  margin-top: 0.8rem;
+}
+.upload .inner form .text-wrap .btns {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .upload .inner form .text-wrap .btns {
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=/style.082fdd9f.css.map */
