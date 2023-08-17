@@ -200,3 +200,6 @@ btnDeleteEl.addEventListener('click', () => {
 btnCancelEl.addEventListener('click', () => {
     window.location.href = './index.html';
 });
+
+// const fileRef = storageRef.child(filePath);
+console.log(fileRef);

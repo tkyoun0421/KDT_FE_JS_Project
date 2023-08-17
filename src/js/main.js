@@ -26,23 +26,36 @@ searchInputEl.addEventListener('change', async () => {
         const rankQuery = docRef.where('rank', '==', `${searchValue}`);
         loadingEl.classList.remove('hide');
         itemWrapEl.innerHTML = '';
+
+        let hasResult = false;
+
         if (!searchValue) {
             await docRef.get().then((res) => {
                 res.forEach((doc) => {
                     makeProfileItem(doc);
+                    hasResult = true;
                 });
             });
         } else {
             await nameQuery.get().then((res) => {
                 res.forEach((doc) => {
                     makeProfileItem(doc);
+                    hasResult = true;
                 });
             });
             await rankQuery.get().then((res) => {
                 res.forEach((doc) => {
                     makeProfileItem(doc);
+                    hasResult = true;
                 });
             });
+        }
+
+        if (!hasResult) {
+            loadingEl.classList.add('hide');
+            alert('검색 결과가 존재하지않습니다!');
+            itemWrapEl.textContent = `검색 결과가 존재하지 않습니다!`;
+            return;
         }
     } catch (error) {
         console.error('문서를 가져오는 도중 오류가 발생했습니다', error);

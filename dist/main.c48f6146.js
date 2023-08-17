@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
   }, _callee, null, [[0, 8]]);
 })));
 searchInputEl.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-  var searchValue, docRef, nameQuery, rankQuery;
+  var searchValue, docRef, nameQuery, rankQuery, hasResult;
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
     while (1) switch (_context2.prev = _context2.next) {
       case 0:
@@ -188,45 +188,58 @@ searchInputEl.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PU
         rankQuery = docRef.where('rank', '==', "".concat(searchValue));
         loadingEl.classList.remove('hide');
         itemWrapEl.innerHTML = '';
+        hasResult = false;
         if (searchValue) {
-          _context2.next = 12;
+          _context2.next = 13;
           break;
         }
-        _context2.next = 10;
+        _context2.next = 11;
         return docRef.get().then(function (res) {
           res.forEach(function (doc) {
             makeProfileItem(doc);
+            hasResult = true;
           });
         });
-      case 10:
-        _context2.next = 16;
+      case 11:
+        _context2.next = 17;
         break;
-      case 12:
-        _context2.next = 14;
+      case 13:
+        _context2.next = 15;
         return nameQuery.get().then(function (res) {
           res.forEach(function (doc) {
             makeProfileItem(doc);
+            hasResult = true;
           });
         });
-      case 14:
-        _context2.next = 16;
+      case 15:
+        _context2.next = 17;
         return rankQuery.get().then(function (res) {
           res.forEach(function (doc) {
             makeProfileItem(doc);
+            hasResult = true;
           });
         });
-      case 16:
-        _context2.next = 21;
+      case 17:
+        if (hasResult) {
+          _context2.next = 22;
+          break;
+        }
+        loadingEl.classList.add('hide');
+        alert('검색 결과가 존재하지않습니다!');
+        itemWrapEl.textContent = "\uAC80\uC0C9 \uACB0\uACFC\uAC00 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4!";
+        return _context2.abrupt("return");
+      case 22:
+        _context2.next = 27;
         break;
-      case 18:
-        _context2.prev = 18;
+      case 24:
+        _context2.prev = 24;
         _context2.t0 = _context2["catch"](0);
         console.error('문서를 가져오는 도중 오류가 발생했습니다', _context2.t0);
-      case 21:
+      case 27:
       case "end":
         return _context2.stop();
     }
-  }, _callee2, null, [[0, 18]]);
+  }, _callee2, null, [[0, 24]]);
 })));
 function makeProfileItem(doc) {
   var div = document.createElement('div');
@@ -265,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11806" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "14902" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

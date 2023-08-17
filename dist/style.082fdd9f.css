@@ -354,6 +354,7 @@ input::placeholder {
   display: flex;
   gap: 5.4rem;
   flex-wrap: wrap;
+  font-size: 1.6rem;
 }
 @media (min-width: 0) and (max-width: 640px) {
   .profile-list .inner .profile-list-btm .item-wrap {
