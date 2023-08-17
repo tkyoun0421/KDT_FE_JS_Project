@@ -158,11 +158,14 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
           res.forEach(function (doc) {
             var profileListBtmEl = document.querySelector('.profile-list-btm');
             var div = document.createElement('div');
+            var a = document.createElement('a');
             var template = "<div class=\"profile-info\">\n                <span class=\"name\">".concat(doc.data().name, "</span>\n                <span class=\"rank\">").concat(doc.data().rank, "</span>\n                </div>\n                ");
             div.classList.add('profile-item');
-            div.innerHTML = template;
-            profileListBtmEl.append(div);
+            div.append(a);
             div.style.backgroundImage = "url(".concat(doc.data().photo, ")");
+            profileListBtmEl.append(div);
+            a.innerHTML = template;
+            a.setAttribute('href', 'profile.html');
           });
         });
       case 5:

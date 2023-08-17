@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const profileListBtmEl =
                     document.querySelector('.profile-list-btm');
                 const div = document.createElement('div');
+                const a = document.createElement('a');
                 let template = `<div class="profile-info">
                 <span class="name">${doc.data().name}</span>
                 <span class="rank">${doc.data().rank}</span>
@@ -16,9 +17,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
 
                 div.classList.add('profile-item');
-                div.innerHTML = template;
-                profileListBtmEl.append(div);
+                div.append(a);
                 div.style.backgroundImage = `url(${doc.data().photo})`;
+                profileListBtmEl.append(div);
+
+                a.innerHTML = template;
+                a.setAttribute('href', 'profile.html');
             });
         });
         loadingEl.style.display = 'none';
