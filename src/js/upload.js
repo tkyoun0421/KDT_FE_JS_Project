@@ -1,44 +1,62 @@
 import { db, storage } from './firebase';
 
-const docRef = db.collection('profile');
 let docId = '';
+const docRef = db.collection('profile');
 const btnSubmitEl = document.querySelector('.btn-submit');
 btnSubmitEl.addEventListener('click', uploadData);
 
 function uploadData() {
-    const file = inputFileEl.files[0];
-    const storageRef = storage.ref();
-    const savePath = storageRef.child('image/' + file.name);
-    const upload = savePath.put(file);
-
-    const rankEl = document.querySelector('.input-rank');
-    const nameEl = document.querySelector('.input-name');
-
-    upload.on(
-        'state_changed',
-        null,
-        (error) => {
-            console.error('실패 사유는', error);
-        },
-        () => {
-            upload.snapshot.ref.getDownloadURL().then((url) => {
-                let item = {
-                    id: new Date().getTime(),
-                    rank: rankEl.value,
-                    name: nameEl.value,
-                    photo: url,
-                };
-                db.collection('profile')
-                    .add(item)
-                    .then(() => {
-                        window.location.href = './index.html';
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+    if (queryString) {
+        const documentRef = docRef.doc(docId);
+        const updateField = {
+            rank: inputRankEl.value,
+            name: inputNameEl.value,
+            photo: photoUrl,
+        };
+        documentRef
+            .update(updateField)
+            .then(() => {
+                alert('프로필이 변경되었습니다!');
+                window.location.href = './index.html';
+            })
+            .catch((error) => {
+                console.error('Error updating document: ', error);
             });
-        }
-    );
+    } else {
+        const file = inputFileEl.files[0];
+        const storageRef = storage.ref();
+        const savePath = storageRef.child('image/' + file.name);
+        const upload = savePath.put(file);
+
+        const rankEl = document.querySelector('.input-rank');
+        const nameEl = document.querySelector('.input-name');
+
+        upload.on(
+            'state_changed',
+            null,
+            (error) => {
+                console.error('실패 사유는', error);
+            },
+            () => {
+                upload.snapshot.ref.getDownloadURL().then((url) => {
+                    let item = {
+                        id: new Date().getTime(),
+                        rank: rankEl.value,
+                        name: nameEl.value,
+                        photo: url,
+                    };
+                    db.collection('profile')
+                        .add(item)
+                        .then(() => {
+                            window.location.href = './index.html';
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                });
+            }
+        );
+    }
 }
 
 const inputFileEl = document.querySelector('.input-file');
@@ -73,8 +91,8 @@ if (queryString) {
 
     docRef
         .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
+        .then((res) => {
+            res.forEach((doc) => {
                 if (doc.data().id === Number(queryString)) {
                     return (docId = doc.id);
                 }
@@ -89,11 +107,12 @@ if (queryString) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const imgEl = document.querySelector('.image');
     try {
         await docRef.get().then((res) => {
             res.forEach((doc) => {
                 if (doc.data().id === Number(queryString)) {
-                    // inputFileEl.value = doc.data().photo;
+                    imgEl.setAttribute('src', `${doc.data().photo}`);
                     inputRankEl.value = doc.data().rank;
                     inputNameEl.value = doc.data().name;
                 }
@@ -112,6 +131,18 @@ btnModifyEl.addEventListener('click', () => {
 
 btnDeleteEl.addEventListener('click', () => {
     const documentRef = docRef.doc(docId);
+    docRef
+        .get()
+        .then((res) => {
+            res.forEach((doc) => {
+                if (doc.data().id === Number(queryString)) {
+                    return (docId = doc.id);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('문서 불러오기 중 오류:', error);
+        });
     documentRef
         .delete()
         .then(() => {
@@ -119,6 +150,12 @@ btnDeleteEl.addEventListener('click', () => {
             window.location.href = './index.html';
         })
         .catch((error) => {
-            console.error('Error removing document: ', error);
+            console.error(error);
         });
 });
+
+inputFileEl.addEventListener('change', () => {
+    console.log(inputFileEl.value);
+});
+
+const fileRef = storage.ref(`image/${doc.data().photo}`);
