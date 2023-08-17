@@ -4,6 +4,15 @@ let docId = '';
 const docRef = db.collection('profile');
 const btnSubmitEl = document.querySelector('.btn-submit');
 btnSubmitEl.addEventListener('click', uploadData);
+const formEl = document.querySelector('form');
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        uploadData();
+    }
+});
+formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+});
 
 function uploadData() {
     if (queryString && !inputFileEl.value) {
@@ -21,8 +30,8 @@ function uploadData() {
             .catch((error) => {
                 console.error('Error updating document: ', error);
             });
-    } else if (inputFileEl.value) {
-        console.log('^');
+    }
+    if (queryString && inputFileEl.value) {
         const file = inputFileEl.files[0];
         const storageRef = storage.ref();
         const savePath = storageRef.child('image/' + file.name);
@@ -185,9 +194,3 @@ btnDeleteEl.addEventListener('click', () => {
             console.error(error);
         });
 });
-
-inputFileEl.addEventListener('change', () => {
-    console.log(inputFileEl.value);
-});
-
-const fileRef = storage.ref(`image/${doc.data().photo}`);

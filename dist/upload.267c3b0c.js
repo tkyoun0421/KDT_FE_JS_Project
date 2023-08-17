@@ -155,6 +155,15 @@ var docId = '';
 var docRef = _firebase.db.collection('profile');
 var btnSubmitEl = document.querySelector('.btn-submit');
 btnSubmitEl.addEventListener('click', uploadData);
+var formEl = document.querySelector('form');
+window.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    uploadData();
+  }
+});
+formEl.addEventListener('submit', function (e) {
+  e.preventDefault();
+});
 function uploadData() {
   if (queryString && !inputFileEl.value) {
     var documentRef = docRef.doc(docId);
@@ -168,8 +177,8 @@ function uploadData() {
     }).catch(function (error) {
       console.error('Error updating document: ', error);
     });
-  } else if (inputFileEl.value) {
-    console.log('^');
+  }
+  if (queryString && inputFileEl.value) {
     var file = inputFileEl.files[0];
     var storageRef = _firebase.storage.ref();
     var savePath = storageRef.child('image/' + file.name);
@@ -312,10 +321,6 @@ btnDeleteEl.addEventListener('click', function () {
     console.error(error);
   });
 });
-inputFileEl.addEventListener('change', function () {
-  console.log(inputFileEl.value);
-});
-var fileRef = _firebase.storage.ref("image/".concat(doc.data().photo));
 },{"./firebase":"src/js/firebase.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -341,7 +346,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11529" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11586" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -27,44 +27,46 @@
         }
         .profile-list-btm {
             margin-top: 2.4rem;
-            display: flex;
-            gap: 5.4rem;
-            flex-wrap: wrap;
-            @include isMobile() {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            @include isMobile(450px) {
+            .item-wrap {
                 display: flex;
-                justify-content: center;
-            }
-            .profile-item {
-                position: relative;
-                width: $itemWidth;
-                height: calc($itemWidth * 3 / 2);
-                border-radius: 0.6rem;
-                background-color: $gray76;
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                overflow: hidden;
-                cursor: pointer;
-                .profile-info {
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
+                gap: 5.4rem;
+                flex-wrap: wrap;
+                @include isMobile() {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                }
+                @include isMobile(450px) {
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    font-size: 1.3rem;
-                    padding: 1.5rem 1.5rem;
-                    color: #fff;
-                    background-color: rgba(14, 17, 27, 0.3);
-                    backdrop-filter: blur(10px);
-                    span {
-                        padding-left: 0.3rem;
+                }
+                .profile-item {
+                    position: relative;
+                    width: $itemWidth;
+                    height: calc($itemWidth * 3 / 2);
+                    border-radius: 0.6rem;
+                    background-color: $gray76;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    overflow: hidden;
+                    cursor: pointer;
+                    .profile-info {
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 1.3rem;
+                        padding: 1.5rem 1.5rem;
+                        color: #fff;
+                        background-color: rgba(14, 17, 27, 0.3);
+                        backdrop-filter: blur(10px);
+                        span {
+                            padding-left: 0.3rem;
+                        }
                     }
                 }
             }
