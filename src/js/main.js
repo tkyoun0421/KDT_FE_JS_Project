@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 profileListBtmEl.append(div);
 
                 a.innerHTML = template;
-                a.setAttribute('href', 'profile.html');
+                a.setAttribute('href', `./upload.html?id=${doc.data().id}`);
             });
         });
         loadingEl.style.display = 'none';

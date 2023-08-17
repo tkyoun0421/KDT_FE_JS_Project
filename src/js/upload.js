@@ -1,10 +1,11 @@
 import { db, storage } from './firebase';
 
+const docRef = db.collection('profile');
+let docId = '';
 const btnSubmitEl = document.querySelector('.btn-submit');
 btnSubmitEl.addEventListener('click', uploadData);
 
 function uploadData() {
-    const inputFileEl = document.querySelector('.input-file');
     const file = inputFileEl.files[0];
     const storageRef = storage.ref();
     const savePath = storageRef.child('image/' + file.name);
@@ -56,3 +57,68 @@ function showPreviewImg(e) {
         reader.readAsDataURL(file);
     }
 }
+
+const inputRankEl = document.querySelector('.input-rank');
+const inputNameEl = document.querySelector('.input-name');
+const btnModifyEl = document.querySelector('.btn-modify');
+const btnDeleteEl = document.querySelector('.btn-delete');
+const [hash, queryString] = location.search.split('=');
+
+if (queryString) {
+    inputFileEl.setAttribute('disabled', '');
+    inputRankEl.setAttribute('disabled', '');
+    inputNameEl.setAttribute('disabled', '');
+    btnModifyEl.style.display = 'block';
+    btnDeleteEl.style.display = 'block';
+
+    docRef
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                if (doc.data().id === Number(queryString)) {
+                    return (docId = doc.id);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('문서 불러오기 중 오류:', error);
+        });
+} else {
+    btnModifyEl.style.display = 'none';
+    btnDeleteEl.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await docRef.get().then((res) => {
+            res.forEach((doc) => {
+                if (doc.data().id === Number(queryString)) {
+                    // inputFileEl.value = doc.data().photo;
+                    inputRankEl.value = doc.data().rank;
+                    inputNameEl.value = doc.data().name;
+                }
+            });
+        });
+    } catch (error) {
+        console.error('문서를 가져오는 도중 오류가 발생했습니다', error);
+    }
+});
+
+btnModifyEl.addEventListener('click', () => {
+    inputFileEl.removeAttribute('disabled');
+    inputRankEl.removeAttribute('disabled');
+    inputNameEl.removeAttribute('disabled');
+});
+
+btnDeleteEl.addEventListener('click', () => {
+    const documentRef = docRef.doc(docId);
+    documentRef
+        .delete()
+        .then(() => {
+            alert('프로필 삭제가 완료되었습니다');
+            window.location.href = './index.html';
+        })
+        .catch((error) => {
+            console.error('Error removing document: ', error);
+        });
+});

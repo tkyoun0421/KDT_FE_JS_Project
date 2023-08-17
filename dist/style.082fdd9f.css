@@ -246,6 +246,14 @@ input {
   font-size: 1.4rem;
 }
 
+.btn-modify {
+  white-space: nowrap;
+  border-radius: 0.6rem;
+  border: 1px solid rgb(208, 215, 222);
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
 .btn-delete:hover {
   background-color: #f6f8fa;
 }
@@ -431,6 +439,11 @@ input::placeholder {
   width: 100%;
   height: auto;
   margin-top: 0.8rem;
+}
+.upload .inner form .text-wrap .util-btns {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
 }
 .upload .inner form .text-wrap .btns {
   margin-top: 3rem;

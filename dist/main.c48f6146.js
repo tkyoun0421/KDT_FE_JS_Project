@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
             div.style.backgroundImage = "url(".concat(doc.data().photo, ")");
             profileListBtmEl.append(div);
             a.innerHTML = template;
-            a.setAttribute('href', 'profile.html');
+            a.setAttribute('href', "./upload.html?id=".concat(doc.data().id));
           });
         });
       case 5:
@@ -207,7 +207,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11273" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1166" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
