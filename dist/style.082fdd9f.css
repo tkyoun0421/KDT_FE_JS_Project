@@ -403,7 +403,7 @@ input::placeholder {
 }
 .upload .inner form {
   display: flex;
-  gap: 3rem;
+  justify-content: space-between;
   align-items: center;
 }
 @media (min-width: 0) and (max-width: 640px) {
@@ -453,6 +453,10 @@ input::placeholder {
   display: flex;
   justify-content: end;
   gap: 1rem;
+}
+.upload .inner form .text-wrap .input-rank {
+  padding: 0.5rem 0.5rem;
+  margin-top: 0.8rem;
 }
 .upload .inner form .text-wrap .btns {
   margin-top: 3rem;

@@ -1,5 +1,7 @@
 import { db } from './firebase';
 const itemWrapEl = document.querySelector('.item-wrap');
+const searchInputEl = document.querySelector('.search-input');
+const loadingEl = document.querySelector('.loading');
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -7,21 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const loadingEl = document.querySelector('.loading');
         await docRef.get().then((res) => {
             res.forEach((doc) => {
-                const div = document.createElement('div');
-                const a = document.createElement('a');
-                let template = `<div class="profile-info">
-                <span class="name">${doc.data().name}</span>
-                <span class="rank">${doc.data().rank}</span>
-                </div>
-                `;
-
-                div.classList.add('profile-item');
-                div.append(a);
-                div.style.backgroundImage = `url(${doc.data().photo})`;
-                itemWrapEl.append(div);
-
-                a.innerHTML = template;
-                a.setAttribute('href', `./upload.html?id=${doc.data().id}`);
+                makeProfileItem(doc);
             });
         });
         loadingEl.classList.add('hide');
@@ -29,9 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('문서를 가져오는 도중 오류가 발생했습니다', error);
     }
 });
-
-const searchInputEl = document.querySelector('.search-input');
-const loadingEl = document.querySelector('.loading');
 
 searchInputEl.addEventListener('change', async () => {
     try {

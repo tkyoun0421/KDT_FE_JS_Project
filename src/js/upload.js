@@ -3,16 +3,51 @@ import { db, storage } from './firebase';
 let docId = '';
 const docRef = db.collection('profile');
 const btnSubmitEl = document.querySelector('.btn-submit');
-btnSubmitEl.addEventListener('click', uploadData);
 const formEl = document.querySelector('form');
+const btnCancelEl = document.querySelector('.btn-cancel');
+const inputFileEl = document.querySelector('.input-file');
+const inputRankEl = document.querySelector('.input-rank');
+const inputNameEl = document.querySelector('.input-name');
+const btnModifyEl = document.querySelector('.btn-modify');
+const btnDeleteEl = document.querySelector('.btn-delete');
+const [hash, queryString] = location.search.split('=');
+
+btnSubmitEl.addEventListener('click', uploadData);
+inputFileEl.addEventListener('change', showPreviewImg);
+
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         uploadData();
     }
 });
+
 formEl.addEventListener('submit', (e) => {
     e.preventDefault();
 });
+
+if (queryString) {
+    inputFileEl.setAttribute('disabled', '');
+    inputRankEl.setAttribute('disabled', '');
+    inputNameEl.setAttribute('disabled', '');
+    btnModifyEl.style.display = 'block';
+    btnDeleteEl.style.display = 'block';
+
+    docRef
+        .get()
+        .then((res) => {
+            res.forEach((doc) => {
+                if (doc.data().id === Number(queryString)) {
+                    return (docId = doc.id);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('문서 불러오기 중 오류:', error);
+        });
+} else {
+    btnModifyEl.style.display = 'none';
+    btnDeleteEl.style.display = 'none';
+}
 
 function uploadData() {
     if (queryString && !inputFileEl.value) {
@@ -99,9 +134,6 @@ function uploadData() {
     }
 }
 
-const inputFileEl = document.querySelector('.input-file');
-inputFileEl.addEventListener('change', showPreviewImg);
-
 function showPreviewImg(e) {
     const imgEl = document.querySelector('.image');
     const file = e.target.files[0];
@@ -114,36 +146,6 @@ function showPreviewImg(e) {
         };
         reader.readAsDataURL(file);
     }
-}
-
-const inputRankEl = document.querySelector('.input-rank');
-const inputNameEl = document.querySelector('.input-name');
-const btnModifyEl = document.querySelector('.btn-modify');
-const btnDeleteEl = document.querySelector('.btn-delete');
-const [hash, queryString] = location.search.split('=');
-
-if (queryString) {
-    inputFileEl.setAttribute('disabled', '');
-    inputRankEl.setAttribute('disabled', '');
-    inputNameEl.setAttribute('disabled', '');
-    btnModifyEl.style.display = 'block';
-    btnDeleteEl.style.display = 'block';
-
-    docRef
-        .get()
-        .then((res) => {
-            res.forEach((doc) => {
-                if (doc.data().id === Number(queryString)) {
-                    return (docId = doc.id);
-                }
-            });
-        })
-        .catch((error) => {
-            console.error('문서 불러오기 중 오류:', error);
-        });
-} else {
-    btnModifyEl.style.display = 'none';
-    btnDeleteEl.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -193,4 +195,8 @@ btnDeleteEl.addEventListener('click', () => {
         .catch((error) => {
             console.error(error);
         });
+});
+
+btnCancelEl.addEventListener('click', () => {
+    window.location.href = './index.html';
 });

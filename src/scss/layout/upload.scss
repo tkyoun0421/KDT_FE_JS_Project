@@ -3,7 +3,7 @@
         max-width: 64rem;
         form {
             display: flex;
-            gap: 3rem;
+            justify-content: space-between;
             align-items: center;
             @include isMobile() {
                 flex-direction: column;
@@ -47,6 +47,10 @@
                     display: flex;
                     justify-content: end;
                     gap: 1rem;
+                }
+                .input-rank {
+                    padding: 0.5rem 0.5rem;
+                    margin-top: 0.8rem;
                 }
                 .btns {
                     margin-top: 3rem;

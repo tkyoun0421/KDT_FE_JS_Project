@@ -146,6 +146,8 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var itemWrapEl = document.querySelector('.item-wrap');
+var searchInputEl = document.querySelector('.search-input');
+var loadingEl = document.querySelector('.loading');
 document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   var docRef, _loadingEl;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -157,15 +159,7 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
         _context.next = 5;
         return docRef.get().then(function (res) {
           res.forEach(function (doc) {
-            var div = document.createElement('div');
-            var a = document.createElement('a');
-            var template = "<div class=\"profile-info\">\n                <span class=\"name\">".concat(doc.data().name, "</span>\n                <span class=\"rank\">").concat(doc.data().rank, "</span>\n                </div>\n                ");
-            div.classList.add('profile-item');
-            div.append(a);
-            div.style.backgroundImage = "url(".concat(doc.data().photo, ")");
-            itemWrapEl.append(div);
-            a.innerHTML = template;
-            a.setAttribute('href', "./upload.html?id=".concat(doc.data().id));
+            makeProfileItem(doc);
           });
         });
       case 5:
@@ -182,8 +176,6 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
     }
   }, _callee, null, [[0, 8]]);
 })));
-var searchInputEl = document.querySelector('.search-input');
-var loadingEl = document.querySelector('.loading');
 searchInputEl.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   var searchValue, docRef, nameQuery, rankQuery;
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -273,7 +265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11529" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11806" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

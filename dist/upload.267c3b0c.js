@@ -154,8 +154,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var docId = '';
 var docRef = _firebase.db.collection('profile');
 var btnSubmitEl = document.querySelector('.btn-submit');
-btnSubmitEl.addEventListener('click', uploadData);
 var formEl = document.querySelector('form');
+var btnCancelEl = document.querySelector('.btn-cancel');
+var inputFileEl = document.querySelector('.input-file');
+var inputRankEl = document.querySelector('.input-rank');
+var inputNameEl = document.querySelector('.input-name');
+var btnModifyEl = document.querySelector('.btn-modify');
+var btnDeleteEl = document.querySelector('.btn-delete');
+var _location$search$spli = location.search.split('='),
+  _location$search$spli2 = _slicedToArray(_location$search$spli, 2),
+  hash = _location$search$spli2[0],
+  queryString = _location$search$spli2[1];
+btnSubmitEl.addEventListener('click', uploadData);
+inputFileEl.addEventListener('change', showPreviewImg);
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
     uploadData();
@@ -164,6 +175,25 @@ window.addEventListener('keydown', function (e) {
 formEl.addEventListener('submit', function (e) {
   e.preventDefault();
 });
+if (queryString) {
+  inputFileEl.setAttribute('disabled', '');
+  inputRankEl.setAttribute('disabled', '');
+  inputNameEl.setAttribute('disabled', '');
+  btnModifyEl.style.display = 'block';
+  btnDeleteEl.style.display = 'block';
+  docRef.get().then(function (res) {
+    res.forEach(function (doc) {
+      if (doc.data().id === Number(queryString)) {
+        return docId = doc.id;
+      }
+    });
+  }).catch(function (error) {
+    console.error('문서 불러오기 중 오류:', error);
+  });
+} else {
+  btnModifyEl.style.display = 'none';
+  btnDeleteEl.style.display = 'none';
+}
 function uploadData() {
   if (queryString && !inputFileEl.value) {
     var documentRef = docRef.doc(docId);
@@ -227,8 +257,6 @@ function uploadData() {
     });
   }
 }
-var inputFileEl = document.querySelector('.input-file');
-inputFileEl.addEventListener('change', showPreviewImg);
 function showPreviewImg(e) {
   var imgEl = document.querySelector('.image');
   var file = e.target.files[0];
@@ -239,33 +267,6 @@ function showPreviewImg(e) {
     };
     reader.readAsDataURL(file);
   }
-}
-var inputRankEl = document.querySelector('.input-rank');
-var inputNameEl = document.querySelector('.input-name');
-var btnModifyEl = document.querySelector('.btn-modify');
-var btnDeleteEl = document.querySelector('.btn-delete');
-var _location$search$spli = location.search.split('='),
-  _location$search$spli2 = _slicedToArray(_location$search$spli, 2),
-  hash = _location$search$spli2[0],
-  queryString = _location$search$spli2[1];
-if (queryString) {
-  inputFileEl.setAttribute('disabled', '');
-  inputRankEl.setAttribute('disabled', '');
-  inputNameEl.setAttribute('disabled', '');
-  btnModifyEl.style.display = 'block';
-  btnDeleteEl.style.display = 'block';
-  docRef.get().then(function (res) {
-    res.forEach(function (doc) {
-      if (doc.data().id === Number(queryString)) {
-        return docId = doc.id;
-      }
-    });
-  }).catch(function (error) {
-    console.error('문서 불러오기 중 오류:', error);
-  });
-} else {
-  btnModifyEl.style.display = 'none';
-  btnDeleteEl.style.display = 'none';
 }
 document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   var imgEl;
@@ -321,6 +322,9 @@ btnDeleteEl.addEventListener('click', function () {
     console.error(error);
   });
 });
+btnCancelEl.addEventListener('click', function () {
+  window.location.href = './index.html';
+});
 },{"./firebase":"src/js/firebase.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -346,7 +350,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1166" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
