@@ -156,12 +156,11 @@ var docRef = _firebase.db.collection('profile');
 var btnSubmitEl = document.querySelector('.btn-submit');
 btnSubmitEl.addEventListener('click', uploadData);
 function uploadData() {
-  if (queryString) {
+  if (queryString && !inputFileEl.value) {
     var documentRef = docRef.doc(docId);
     var updateField = {
       rank: inputRankEl.value,
-      name: inputNameEl.value,
-      photo: photoUrl
+      name: inputNameEl.value
     };
     documentRef.update(updateField).then(function () {
       alert('프로필이 변경되었습니다!');
@@ -169,17 +168,41 @@ function uploadData() {
     }).catch(function (error) {
       console.error('Error updating document: ', error);
     });
-  } else {
+  } else if (inputFileEl.value) {
+    console.log('^');
     var file = inputFileEl.files[0];
     var storageRef = _firebase.storage.ref();
     var savePath = storageRef.child('image/' + file.name);
     var upload = savePath.put(file);
-    var rankEl = document.querySelector('.input-rank');
-    var nameEl = document.querySelector('.input-name');
+    var _documentRef = docRef.doc(docId);
     upload.on('state_changed', null, function (error) {
       console.error('실패 사유는', error);
     }, function () {
       upload.snapshot.ref.getDownloadURL().then(function (url) {
+        var updateField = {
+          rank: inputRankEl.value,
+          name: inputNameEl.value,
+          photo: url
+        };
+        _documentRef.update(updateField).then(function () {
+          alert('프로필이 변경되었습니다!');
+          window.location.href = './index.html';
+        }).catch(function (error) {
+          console.log(error);
+        });
+      });
+    });
+  } else {
+    var _file = inputFileEl.files[0];
+    var _storageRef = _firebase.storage.ref();
+    var _savePath = _storageRef.child('image/' + _file.name);
+    var _upload = _savePath.put(_file);
+    var rankEl = document.querySelector('.input-rank');
+    var nameEl = document.querySelector('.input-name');
+    _upload.on('state_changed', null, function (error) {
+      console.error('실패 사유는', error);
+    }, function () {
+      _upload.snapshot.ref.getDownloadURL().then(function (url) {
         var item = {
           id: new Date().getTime(),
           rank: rankEl.value,
@@ -247,6 +270,7 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
           res.forEach(function (doc) {
             if (doc.data().id === Number(queryString)) {
               imgEl.setAttribute('src', "".concat(doc.data().photo));
+              inputFileEl.value = '';
               inputRankEl.value = doc.data().rank;
               inputNameEl.value = doc.data().name;
             }
@@ -317,7 +341,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11806" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11529" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

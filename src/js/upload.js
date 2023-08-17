@@ -6,12 +6,11 @@ const btnSubmitEl = document.querySelector('.btn-submit');
 btnSubmitEl.addEventListener('click', uploadData);
 
 function uploadData() {
-    if (queryString) {
+    if (queryString && !inputFileEl.value) {
         const documentRef = docRef.doc(docId);
         const updateField = {
             rank: inputRankEl.value,
             name: inputNameEl.value,
-            photo: photoUrl,
         };
         documentRef
             .update(updateField)
@@ -22,6 +21,38 @@ function uploadData() {
             .catch((error) => {
                 console.error('Error updating document: ', error);
             });
+    } else if (inputFileEl.value) {
+        console.log('^');
+        const file = inputFileEl.files[0];
+        const storageRef = storage.ref();
+        const savePath = storageRef.child('image/' + file.name);
+        const upload = savePath.put(file);
+        const documentRef = docRef.doc(docId);
+        upload.on(
+            'state_changed',
+            null,
+            (error) => {
+                console.error('실패 사유는', error);
+            },
+            () => {
+                upload.snapshot.ref.getDownloadURL().then((url) => {
+                    const updateField = {
+                        rank: inputRankEl.value,
+                        name: inputNameEl.value,
+                        photo: url,
+                    };
+                    documentRef
+                        .update(updateField)
+                        .then(() => {
+                            alert('프로필이 변경되었습니다!');
+                            window.location.href = './index.html';
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                });
+            }
+        );
     } else {
         const file = inputFileEl.files[0];
         const storageRef = storage.ref();
@@ -113,6 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             res.forEach((doc) => {
                 if (doc.data().id === Number(queryString)) {
                     imgEl.setAttribute('src', `${doc.data().photo}`);
+                    inputFileEl.value = '';
                     inputRankEl.value = doc.data().rank;
                     inputNameEl.value = doc.data().name;
                 }
