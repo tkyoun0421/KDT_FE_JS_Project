@@ -117,9 +117,91 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/js/upload.js":[function(require,module,exports) {
+})({"src/js/firebase.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.storage = exports.db = void 0;
+var firebaseConfig = {
+  apiKey: 'AIzaSyDBWZgf69JelbmqlPPPzj56W5yFL-Q5wZo',
+  authDomain: 'project-1-8debf.firebaseapp.com',
+  projectId: 'project-1-8debf',
+  storageBucket: 'project-1-8debf.appspot.com',
+  messagingSenderId: '386056815137',
+  appId: '1:386056815137:web:92425cb061808073ed9960'
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+exports.db = db;
+var storage = firebase.storage();
+
+// function loadData() {
+//     db.collection('profile')
+//         .get()
+//         .then((res) => {
+//             res.forEach((doc) => {
+//                 const profileListBtmEl =
+//                     document.querySelector('.profile-list-btm');
+//                 const div = document.createElement('div');
+//                 let template = `<div class="profile-info">
+//                 <input
+//                 class="checkbox"
+//                 type="checkbox"
+//                 id="profile-item"
+//                 name="profile-item"
+//                 />
+//                 <span class="name">${doc.data().name}</span>
+//                 <span class="rank">${doc.data().rank}</span>
+//                 </div>
+//                 `;
+
+//                 div.classList.add('profile-item');
+//                 div.innerHTML = template;
+//                 profileListBtmEl.append(div);
+//                 div.style.backgroundImage = `url(${doc.data().photo})`;
+//             });
+//         });
+// }
+
+// loadData();
+exports.storage = storage;
+},{}],"src/js/upload.js":[function(require,module,exports) {
+"use strict";
+
+var _firebase = require("./firebase");
+var btnSubmitEl = document.querySelector('.btn-submit');
+btnSubmitEl.addEventListener('click', uploadData);
+function uploadData() {
+  var inputFileEl = document.querySelector('.input-file');
+  var file = inputFileEl.files[0];
+  var storageRef = _firebase.storage.ref();
+  var savePath = storageRef.child('image/' + file.name);
+  var upload = savePath.put(file);
+  var rankEl = document.querySelector('.input-rank');
+  var nameEl = document.querySelector('.input-name');
+  upload.on('state_changed', null, function (error) {
+    console.error('실패 사유는', error);
+  }, function () {
+    upload.snapshot.ref.getDownloadURL().then(function (url) {
+      var item = {
+        id: new Date().getTime(),
+        rank: rankEl.value,
+        name: nameEl.value,
+        photo: url
+      };
+      _firebase.db.collection('profile').add(item).then(function () {
+        window.location.href = './index.html';
+      }).catch(function (error) {
+        console.log(error);
+      });
+    });
+  });
+}
 var inputFileEl = document.querySelector('.input-file');
-inputFileEl.addEventListener('change', function (e) {
+inputFileEl.addEventListener('change', showPreviewImg);
+function showPreviewImg(e) {
   var imgEl = document.querySelector('.image');
   var file = e.target.files[0];
   if (file) {
@@ -129,8 +211,8 @@ inputFileEl.addEventListener('change', function (e) {
     };
     reader.readAsDataURL(file);
   }
-});
-},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}
+},{"./firebase":"src/js/firebase.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -155,7 +237,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "14194" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5177" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

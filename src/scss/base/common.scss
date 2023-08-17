@@ -9,3 +9,26 @@ body {
     margin-top: 2.4rem;
     padding: 0 3.2rem;
 }
+
+.loading {
+    width: 3rem;
+    height: 3rem;
+    margin: 3rem auto;
+    border: 0.4rem solid #174ea6;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: loader 1s infinite linear;
+}
+
+.loading.hide {
+    display: none;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

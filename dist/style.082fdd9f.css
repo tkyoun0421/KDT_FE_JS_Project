@@ -10,6 +10,28 @@ body {
   padding: 0 3.2rem;
 }
 
+.loading {
+  width: 3rem;
+  height: 3rem;
+  margin: 3rem auto;
+  border: 0.4rem solid #174ea6;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: loader 1s infinite linear;
+}
+
+.loading.hide {
+  display: none;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 html,
 body,
 div,
@@ -413,6 +435,25 @@ input::placeholder {
   .upload .inner form .text-wrap .btns {
     justify-content: center;
   }
+}
+
+#footer {
+  padding: 4rem 0;
+}
+#footer .inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 4rem 0 0.8rem;
+  border-top: 1px solid rgb(216, 222, 228);
+}
+#footer .inner .logo {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+#footer .inner span {
+  font-size: 1.2rem;
+  color: #656d76;
 }
 
 /*# sourceMappingURL=/style.082fdd9f.css.map */

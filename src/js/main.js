@@ -1,9 +1,10 @@
-import { db, storage } from './firebase';
+import { db } from './firebase';
 
-function loadData() {
-    db.collection('profile')
-        .get()
-        .then((res) => {
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const docRef = db.collection('profile');
+        const loadingEl = document.querySelector('.loading');
+        await docRef.get().then((res) => {
             res.forEach((doc) => {
                 const profileListBtmEl =
                     document.querySelector('.profile-list-btm');
@@ -26,46 +27,8 @@ function loadData() {
                 div.style.backgroundImage = `url(${doc.data().photo})`;
             });
         });
-}
-
-loadData();
-
-// function uploadData() {
-//     const inputFileEl = document.querySelector('.input-file');
-//     const file = inputFileEl.files[0];
-//     const storageRef = storage.ref();
-//     const savePath = storageRef.child('image/' + file.name);
-//     const upload = savePath.put(file);
-
-//     const rankEl = document.querySelector('.input-rank');
-//     const nameEl = document.querySelector('.input-name');
-
-//     upload.on(
-//         'state_changed',
-//         null,
-//         (error) => {
-//             console.error('실패 사유는', error);
-//         },
-//         () => {
-//             upload.snapshot.ref.getDownloadURL().then((url) => {
-//                 let item = {
-//                     id: new Date().getTime(),
-//                     rank: rankEl.value,
-//                     name: nameEl.value,
-//                     photo: url,
-//                 };
-//                 db.collection('profile')
-//                     .add(item)
-//                     .then(() => {
-//                         window.location.href = './index.html';
-//                     })
-//                     .catch((error) => {
-//                         console.log(error);
-//                     });
-//             });
-//         }
-//     );
-// }
-
-// const btnSubmitEl = document.querySelector('.btn-submit');
-// btnSubmitEl.addEventListener('click', uploadData);
+        loadingEl.style.display = 'none';
+    } catch (error) {
+        console.error('문서를 가져오는 도중 오류가 발생했습니다', error);
+    }
+});
