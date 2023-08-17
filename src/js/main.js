@@ -10,12 +10,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     document.querySelector('.profile-list-btm');
                 const div = document.createElement('div');
                 let template = `<div class="profile-info">
-                <input
-                class="checkbox"
-                type="checkbox"
-                id="profile-item"
-                name="profile-item"
-                />
                 <span class="name">${doc.data().name}</span>
                 <span class="rank">${doc.data().rank}</span>
                 </div>

@@ -136,36 +136,6 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 exports.db = db;
 var storage = firebase.storage();
-
-// function loadData() {
-//     db.collection('profile')
-//         .get()
-//         .then((res) => {
-//             res.forEach((doc) => {
-//                 const profileListBtmEl =
-//                     document.querySelector('.profile-list-btm');
-//                 const div = document.createElement('div');
-//                 let template = `<div class="profile-info">
-//                 <input
-//                 class="checkbox"
-//                 type="checkbox"
-//                 id="profile-item"
-//                 name="profile-item"
-//                 />
-//                 <span class="name">${doc.data().name}</span>
-//                 <span class="rank">${doc.data().rank}</span>
-//                 </div>
-//                 `;
-
-//                 div.classList.add('profile-item');
-//                 div.innerHTML = template;
-//                 profileListBtmEl.append(div);
-//                 div.style.backgroundImage = `url(${doc.data().photo})`;
-//             });
-//         });
-// }
-
-// loadData();
 exports.storage = storage;
 },{}],"src/js/upload.js":[function(require,module,exports) {
 "use strict";
@@ -237,7 +207,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5177" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11273" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

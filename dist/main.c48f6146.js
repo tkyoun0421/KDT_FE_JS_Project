@@ -136,36 +136,6 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 exports.db = db;
 var storage = firebase.storage();
-
-// function loadData() {
-//     db.collection('profile')
-//         .get()
-//         .then((res) => {
-//             res.forEach((doc) => {
-//                 const profileListBtmEl =
-//                     document.querySelector('.profile-list-btm');
-//                 const div = document.createElement('div');
-//                 let template = `<div class="profile-info">
-//                 <input
-//                 class="checkbox"
-//                 type="checkbox"
-//                 id="profile-item"
-//                 name="profile-item"
-//                 />
-//                 <span class="name">${doc.data().name}</span>
-//                 <span class="rank">${doc.data().rank}</span>
-//                 </div>
-//                 `;
-
-//                 div.classList.add('profile-item');
-//                 div.innerHTML = template;
-//                 profileListBtmEl.append(div);
-//                 div.style.backgroundImage = `url(${doc.data().photo})`;
-//             });
-//         });
-// }
-
-// loadData();
 exports.storage = storage;
 },{}],"src/js/main.js":[function(require,module,exports) {
 "use strict";
@@ -188,7 +158,7 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
           res.forEach(function (doc) {
             var profileListBtmEl = document.querySelector('.profile-list-btm');
             var div = document.createElement('div');
-            var template = "<div class=\"profile-info\">\n                <input\n                class=\"checkbox\"\n                type=\"checkbox\"\n                id=\"profile-item\"\n                name=\"profile-item\"\n                />\n                <span class=\"name\">".concat(doc.data().name, "</span>\n                <span class=\"rank\">").concat(doc.data().rank, "</span>\n                </div>\n                ");
+            var template = "<div class=\"profile-info\">\n                <span class=\"name\">".concat(doc.data().name, "</span>\n                <span class=\"rank\">").concat(doc.data().rank, "</span>\n                </div>\n                ");
             div.classList.add('profile-item');
             div.innerHTML = template;
             profileListBtmEl.append(div);
@@ -234,7 +204,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5177" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11273" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -365,6 +365,7 @@ input::placeholder {
   bottom: 0;
   width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
   font-size: 1.3rem;
   padding: 1.5rem 1.5rem;
