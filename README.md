@@ -12,8 +12,6 @@ Cookie 임직원 프로필을 등록 수정 확인 삭제가 가능한 웹 페�
 <a href="https://kdt-fe-js-project.vercel.app/">https://kdt-fe-js-project.vercel.app/</a>
 
 ### 개발 스택
-
-
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
 <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
