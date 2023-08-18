@@ -13,7 +13,12 @@ Cookie 임직원 프로필을 등록 수정 확인 삭제가 가능한 웹 페�
 
 ### 개발 스택
 
-HTML, SCSS, Javascript, Parcel, Vercel, Firebase
+
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> 
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"> 
+<img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black"/>  
 
 ### User flow
 
@@ -21,23 +26,21 @@ HTML, SCSS, Javascript, Parcel, Vercel, Firebase
 
 ### 주요 기능
 
--   프로필 등록  
-    <img src="./프로필 등록.gif" width="500"/>
-    <br>
-    <br>
-    <br>
--   프로필 수정  
-    <img src="./프로필 수정.gif" width="500" />
-    <br>
-    <br>
-    <br>
--   프로필 삭제  
-    <img src="./프로필 삭제.gif" width="500" />
-    <br>
-    <br>
-    <br>
--   프로필 검색  
-    <img src="./프로필 검색.gif" width="500" />
+1.프로필 등록  
+<img src="./프로필 등록.gif" width="500"/>   
+> 프로필 사진과 정보들을 input 태그에 입력하고 이 데이터들을 사진은 firebase storage에 텍스트 정보들은 firestore에 전송합니다.
+
+2.프로필 수정  
+<img src="./프로필 수정.gif" width="500" />  
+> 프로필에 수정된 데이터들을 서버와 비교하여 변경된 데이터들을 업데이트합니다.
+
+3.프로필 삭제  
+ <img src="./프로필 삭제.gif" width="500" />
+ > 해당 프로필과 동일한 아이디를 참조한 후 해당 필드를 서버에서 삭제하고 요소에서도 삭제합니다.
+
+4.프로필 검색  
+<img src="./프로필 검색.gif" width="500" />
+> input 태그로 쓰여진 문자 데이터와 서버의 데이터를 비교한 후 일치하는 데이터를 반환합니다.
 
 ## :cat: 필수요구사항
 
@@ -51,7 +54,7 @@ HTML, SCSS, Javascript, Parcel, Vercel, Firebase
 -   [x] CSS 상대수치 사용(rem, em)
 -   [x] JS DOM event 조작
 
-## 선택요구사항
+## :clap: 선택요구사항
 
 -   [ ] 사진 관리 페이지와 관련된 기타 기능도 고려해 보세요.
 -   [x] 페이지가 보여지기 전에 로딩 애니메이션이 보이도록 만들어보세요.
