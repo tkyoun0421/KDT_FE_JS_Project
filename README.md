@@ -21,3 +21,14 @@ Cookie 임직원 프로필을 등록 수정 확인 삭제가 가능한 웹 페�
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 
 ### 주요 기능
+
+-   프로필 등록  
+     <img src="./프로필 등록.gif" />  
+    <br>
+-   프로필 수정
+    <img src="./프로필 수정.gif" />
+    <br>
+-   프로필 삭제
+    <img src="./프로필 삭제.gif" />
+-   프로필 검색
+    <img src="./프로필 검색.gif" />
