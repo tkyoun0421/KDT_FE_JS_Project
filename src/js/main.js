@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const docRef = db.collection('profile');
         const loadingEl = document.querySelector('.loading');
-        await docRef.get().then((res) => {
-            res.forEach((doc) => {
-                makeProfileItem(doc);
+        await docRef
+            .orderBy('name')
+            .get()
+            .then((res) => {
+                res.forEach((doc) => {
+                    makeProfileItem(doc);
+                });
             });
-        });
         loadingEl.classList.add('hide');
     } catch (error) {
         console.error('문서를 가져오는 도중 오류가 발생했습니다', error);
