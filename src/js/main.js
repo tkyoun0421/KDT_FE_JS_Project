@@ -65,15 +65,19 @@ searchInputEl.addEventListener('change', async () => {
 function makeProfileItem(doc) {
     const div = document.createElement('div');
     const a = document.createElement('a');
-    let template = `<div class="profile-info">
-                        <span class="name">${doc.data().name}</span>
-                        <span class="rank">${doc.data().rank}</span>
+    let template = /* html */ `<div class="profile-info">
+                        <div class="photo"><img src="${
+                            doc.data().photo
+                        }"</></div>
+                        <div class="name"><p>${doc.data().name}</p></div>
+                        <div class="rank"><p>${doc.data().rank}</p></div>
+                        <div class="email"><p>${doc.data().email}</p></div>
+                        <div class="text"><p>${doc.data().self}</p></div>
                         </div>
                         `;
 
     div.classList.add('profile-item');
     div.append(a);
-    div.style.backgroundImage = `url(${doc.data().photo})`;
     itemWrapEl.append(div);
 
     a.innerHTML = template;

@@ -13,6 +13,7 @@ body {
 @media (min-width: 0) and (max-width: 640px) {
   .inner {
     max-width: 90%;
+    padding: 0 1rem;
   }
 }
 
@@ -264,7 +265,7 @@ input {
   background-color: #f6f8fa;
 }
 
-input[type=text] {
+input {
   background-color: #f6f8fa;
   border-top-right-radius: 0.6rem;
   border-bottom-right-radius: 0.6rem;
@@ -350,53 +351,83 @@ input::placeholder {
 .profile-list .inner .profile-list-btm {
   margin-top: 2.4rem;
 }
-.profile-list .inner .profile-list-btm .item-wrap {
+.profile-list .inner .profile-list-btm .table .row {
   display: flex;
-  gap: 5.4rem;
-  flex-wrap: wrap;
-  font-size: 1.6rem;
-}
-@media (min-width: 0) and (max-width: 640px) {
-  .profile-list .inner .profile-list-btm .item-wrap {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-}
-@media (min-width: 0) and (max-width: 450px) {
-  .profile-list .inner .profile-list-btm .item-wrap {
-    display: flex;
-    justify-content: center;
-  }
-}
-.profile-list .inner .profile-list-btm .item-wrap .profile-item {
-  position: relative;
-  width: 20rem;
-  height: 30rem;
-  border-radius: 0.6rem;
-  background-color: #656d76;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  cursor: pointer;
-}
-.profile-list .inner .profile-list-btm .item-wrap .profile-item .profile-info {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-size: 1.3rem;
-  padding: 1.5rem 1.5rem;
-  color: #fff;
-  background-color: rgba(14, 17, 27, 0.3);
-  backdrop-filter: blur(10px);
+  background-color: rgb(246, 248, 250);
+  font-size: 1.4rem;
+  border: 1px solid rgb(208, 215, 222);
+  border-radius: 0.6rem;
 }
-.profile-list .inner .profile-list-btm .item-wrap .profile-item .profile-info span {
-  padding-left: 0.3rem;
+.profile-list .inner .profile-list-btm .table .item-wrap {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  gap: 1rem;
+  width: 100%;
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item {
+  width: 100%;
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 1.6rem;
+  align-items: center;
+  border: 1px solid rgb(208, 215, 222);
+  border-radius: 0.6rem;
+  column-gap: 5rem;
+  row-gap: 1rem;
+  font-size: 1.4rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 0) and (max-width: 680px) {
+  .profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    column-gap: 4rem;
+    row-gap: 1rem;
+    text-align: center;
+  }
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .checkbox {
+  padding-left: 0.8rem;
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .photo {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+@media (min-width: 0) and (max-width: 680px) {
+  .profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .photo {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .text {
+  white-space: normal;
+  word-break: break-all;
+  width: 50rem;
+}
+@media (min-width: 0) and (max-width: 780px) {
+  .profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .text {
+    order: 4;
+    width: 100%;
+  }
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .name {
+  width: 6rem;
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .rank {
+  width: 6rem;
+}
+.profile-list .inner .profile-list-btm .table .item-wrap .profile-item .profile-info .email {
+  width: 20rem;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .upload .inner {
@@ -454,6 +485,12 @@ input::placeholder {
   display: flex;
   justify-content: end;
   gap: 1rem;
+  margin-top: 3rem;
+}
+@media (min-width: 0) and (max-width: 640px) {
+  .upload .inner form .text-wrap .util-btns {
+    justify-content: center;
+  }
 }
 .upload .inner form .text-wrap .input-rank {
   padding: 0.5rem 0.5rem;

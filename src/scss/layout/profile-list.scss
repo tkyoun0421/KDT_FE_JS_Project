@@ -27,46 +27,76 @@
         }
         .profile-list-btm {
             margin-top: 2.4rem;
-            .item-wrap {
-                display: flex;
-                gap: 5.4rem;
-                flex-wrap: wrap;
-                font-size: 1.6rem;
-                @include isMobile() {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 1rem;
-                }
-                @include isMobile(450px) {
+            .table {
+                .row {
                     display: flex;
-                    justify-content: center;
-                }
-                .profile-item {
-                    position: relative;
-                    width: $itemWidth;
-                    height: calc($itemWidth * 3 / 2);
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: rgb(246, 248, 250);
+                    font-size: 1.4rem;
+                    border: 1px solid rgb(208, 215, 222);
                     border-radius: 0.6rem;
-                    background-color: $gray76;
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    overflow: hidden;
-                    cursor: pointer;
-                    .profile-info {
-                        position: absolute;
-                        left: 0;
-                        bottom: 0;
+                }
+                .item-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 1.6rem;
+                    gap: 1rem;
+                    width: 100%;
+                    .profile-item {
                         width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 1.3rem;
-                        padding: 1.5rem 1.5rem;
-                        color: #fff;
-                        background-color: rgba(14, 17, 27, 0.3);
-                        backdrop-filter: blur(10px);
-                        span {
-                            padding-left: 0.3rem;
+                        .profile-info {
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 0.8rem 1.6rem;
+                            align-items: center;
+                            border: 1px solid rgb(208, 215, 222);
+                            border-radius: 0.6rem;
+                            column-gap: 5rem;
+                            row-gap: 1rem;
+                            font-size: 1.4rem;
+                            flex-wrap: wrap;
+                            @include isMobile(680px) {
+                                flex-wrap: wrap;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                column-gap: 4rem;
+                                row-gap: 1rem;
+                                text-align: center;
+                            }
+                            .checkbox {
+                                padding-left: 0.8rem;
+                            }
+                            .photo {
+                                width: 10rem;
+                                height: 10rem;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                @include isMobile(680px) {
+                                    width: 15rem;
+                                    height: 15rem;
+                                }
+                            }
+                            .text {
+                                white-space: normal;
+                                word-break: break-all;
+                                width: 50rem;
+                                @include isMobile(780px) {
+                                    order: 4;
+                                    width: 100%;
+                                }
+                            }
+                            .name {
+                                width: 6rem;
+                            }
+                            .rank {
+                                width: 6rem;
+                            }
+                            .email {
+                                width: 20rem;
+                                white-space: normal;
+                                word-break: break-all;
+                            }
                         }
                     }
                 }

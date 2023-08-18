@@ -152,6 +152,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var docId = '';
+var imageUrl = '';
 var docRef = _firebase.db.collection('profile');
 var btnSubmitEl = document.querySelector('.btn-submit');
 var formEl = document.querySelector('form');
@@ -159,14 +160,19 @@ var btnCancelEl = document.querySelector('.btn-cancel');
 var inputFileEl = document.querySelector('.input-file');
 var inputRankEl = document.querySelector('.input-rank');
 var inputNameEl = document.querySelector('.input-name');
+var inputEmailEl = document.querySelector('.input-email');
+var inputSelfEl = document.querySelector('.input-self');
 var btnModifyEl = document.querySelector('.btn-modify');
 var btnDeleteEl = document.querySelector('.btn-delete');
+var imgEl = document.querySelector('.image');
 var _location$search$spli = location.search.split('='),
   _location$search$spli2 = _slicedToArray(_location$search$spli, 2),
   hash = _location$search$spli2[0],
   queryString = _location$search$spli2[1];
 btnSubmitEl.addEventListener('click', uploadData);
 inputFileEl.addEventListener('change', showPreviewImg);
+btnCancelEl.addEventListener('click', moveToMainPage);
+btnModifyEl.addEventListener('click', removeAttribute);
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
     uploadData();
@@ -175,12 +181,12 @@ window.addEventListener('keydown', function (e) {
 formEl.addEventListener('submit', function (e) {
   e.preventDefault();
 });
+inputFileEl.addEventListener('click', function () {
+  return imageUrl = imgEl.src;
+});
 if (queryString) {
-  inputFileEl.setAttribute('disabled', '');
-  inputRankEl.setAttribute('disabled', '');
-  inputNameEl.setAttribute('disabled', '');
-  btnModifyEl.style.display = 'block';
-  btnDeleteEl.style.display = 'block';
+  setAttribute();
+  showUtilBtns();
   docRef.get().then(function (res) {
     res.forEach(function (doc) {
       if (doc.data().id === Number(queryString)) {
@@ -191,74 +197,73 @@ if (queryString) {
     console.error('문서 불러오기 중 오류:', error);
   });
 } else {
+  hideUtilBtns();
+}
+function showUtilBtns() {
+  btnModifyEl.style.display = 'block';
+  btnDeleteEl.style.display = 'block';
+}
+function hideUtilBtns() {
   btnModifyEl.style.display = 'none';
   btnDeleteEl.style.display = 'none';
 }
 function uploadData() {
+  // 버튼 중복 클릭 방지
+  btnSubmitEl.disabled = 'true';
+
+  // 사진이 변경되지 않았을 때
   if (queryString && !inputFileEl.value) {
-    var documentRef = docRef.doc(docId);
-    var updateField = {
+    var item = {
       rank: inputRankEl.value,
-      name: inputNameEl.value
+      name: inputNameEl.value,
+      email: inputEmailEl.value,
+      self: inputSelfEl.value
     };
-    documentRef.update(updateField).then(function () {
-      alert('프로필이 변경되었습니다!');
-      window.location.href = './index.html';
-    }).catch(function (error) {
-      console.error('Error updating document: ', error);
-    });
+    updateProfile(item);
   }
+  // 사진이 변경 되었을 때
   if (queryString && inputFileEl.value) {
     var file = inputFileEl.files[0];
     var storageRef = _firebase.storage.ref();
-    var savePath = storageRef.child('image/' + file.name);
+    var savePath = storageRef.child('image/' + new Date().getTime());
     var upload = savePath.put(file);
-    var _documentRef = docRef.doc(docId);
     upload.on('state_changed', null, function (error) {
       console.error('실패 사유는', error);
     }, function () {
       upload.snapshot.ref.getDownloadURL().then(function (url) {
-        var updateField = {
+        var item = {
           rank: inputRankEl.value,
           name: inputNameEl.value,
-          photo: url
+          photo: url,
+          email: inputEmailEl.value,
+          self: inputSelfEl.value
         };
-        _documentRef.update(updateField).then(function () {
-          alert('프로필이 변경되었습니다!');
-          window.location.href = './index.html';
-        }).catch(function (error) {
-          console.log(error);
-        });
+        updateProfile(item, deleteImageFromStorage(imageUrl));
       });
     });
   } else {
     var _file = inputFileEl.files[0];
     var _storageRef = _firebase.storage.ref();
-    var _savePath = _storageRef.child('image/' + _file.name);
+    var _savePath = _storageRef.child('image/' + new Date().getTime());
     var _upload = _savePath.put(_file);
-    var rankEl = document.querySelector('.input-rank');
-    var nameEl = document.querySelector('.input-name');
     _upload.on('state_changed', null, function (error) {
       console.error('실패 사유는', error);
     }, function () {
       _upload.snapshot.ref.getDownloadURL().then(function (url) {
         var item = {
           id: new Date().getTime(),
-          rank: rankEl.value,
-          name: nameEl.value,
-          photo: url
+          rank: inputRankEl.value,
+          name: inputNameEl.value,
+          photo: url,
+          email: inputEmailEl.value,
+          self: inputSelfEl.value
         };
-        _firebase.db.collection('profile').add(item).then(function () {
-          window.location.href = './index.html';
-        }).catch(function (error) {
-          console.log(error);
-        });
+        submitProfileToFirestore(item);
       });
     });
   }
 }
 function showPreviewImg(e) {
-  var imgEl = document.querySelector('.image');
   var file = e.target.files[0];
   if (file) {
     var reader = new FileReader();
@@ -269,65 +274,99 @@ function showPreviewImg(e) {
   }
 }
 document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var imgEl;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
-        imgEl = document.querySelector('.image');
-        _context.prev = 1;
-        _context.next = 4;
-        return docRef.get().then(function (res) {
-          res.forEach(function (doc) {
-            if (doc.data().id === Number(queryString)) {
-              imgEl.setAttribute('src', "".concat(doc.data().photo));
-              inputFileEl.value = '';
-              inputRankEl.value = doc.data().rank;
-              inputNameEl.value = doc.data().name;
-            }
-          });
-        });
-      case 4:
-        _context.next = 9;
-        break;
-      case 6:
-        _context.prev = 6;
-        _context.t0 = _context["catch"](1);
-        console.error('문서를 가져오는 도중 오류가 발생했습니다', _context.t0);
-      case 9:
+        try {
+          getDataFromFirestore();
+        } catch (error) {
+          console.error('문서를 가져오는 도중 오류가 발생했습니다', error);
+        }
+      case 1:
       case "end":
         return _context.stop();
     }
-  }, _callee, null, [[1, 6]]);
+  }, _callee);
 })));
-btnModifyEl.addEventListener('click', function () {
-  inputFileEl.removeAttribute('disabled');
-  inputRankEl.removeAttribute('disabled');
-  inputNameEl.removeAttribute('disabled');
-});
 btnDeleteEl.addEventListener('click', function () {
   var documentRef = docRef.doc(docId);
-  docRef.get().then(function (res) {
+  deleteImageFromStorage(imgEl.src).then(function () {
+    return docRef.get();
+  }).then(function (res) {
+    var foundDocId = null;
     res.forEach(function (doc) {
       if (doc.data().id === Number(queryString)) {
-        return docId = doc.id;
+        foundDocId = doc.id;
       }
     });
-  }).catch(function (error) {
-    console.error('문서 불러오기 중 오류:', error);
-  });
-  documentRef.delete().then(function () {
+    if (foundDocId) {
+      docId = foundDocId;
+      return documentRef.delete();
+    } else {
+      throw new Error('문서를 찾을 수 없습니다');
+    }
+  }).then(function () {
     alert('프로필 삭제가 완료되었습니다');
-    window.location.href = './index.html';
+    moveToMainPage();
   }).catch(function (error) {
     console.error(error);
   });
 });
-btnCancelEl.addEventListener('click', function () {
+function deleteImageFromStorage(imageUrl) {
+  var imageRef = _firebase.storage.refFromURL(imageUrl);
+  return imageRef.delete();
+}
+function moveToMainPage() {
   window.location.href = './index.html';
-});
-
-// const fileRef = storageRef.child(filePath);
-console.log(fileRef);
+}
+function removeAttribute() {
+  inputFileEl.removeAttribute('disabled');
+  inputRankEl.removeAttribute('disabled');
+  inputNameEl.removeAttribute('disabled');
+  inputEmailEl.removeAttribute('disabled');
+  inputSelfEl.removeAttribute('disabled');
+}
+function setAttribute() {
+  inputFileEl.setAttribute('disabled', '');
+  inputRankEl.setAttribute('disabled', '');
+  inputNameEl.setAttribute('disabled', '');
+  inputEmailEl.setAttribute('disabled', '');
+  inputSelfEl.setAttribute('disabled', '');
+}
+function getDataFromFirestore() {
+  docRef.get().then(function (res) {
+    res.forEach(function (doc) {
+      if (doc.data().id === Number(queryString)) {
+        imgEl.setAttribute('src', "".concat(doc.data().photo));
+        inputFileEl.value = '';
+        inputRankEl.value = doc.data().rank;
+        inputNameEl.value = doc.data().name;
+        inputEmailEl.value = doc.data().email;
+        inputSelfEl.value = doc.data().self;
+      }
+    });
+  });
+}
+function updateProfile(item, deleteImage) {
+  var documentRef = docRef.doc(docId);
+  documentRef.update(item).then(function () {
+    alert('프로필이 변경되었습니다!');
+    moveToMainPage();
+    deleteImage;
+    btnSubmitEl.disabled = 'false';
+  }).catch(function (error) {
+    console.error('Error updating document: ', error);
+  });
+}
+function submitProfileToFirestore(item) {
+  docRef.add(item).then(function () {
+    alert('프로필 등록이 완료되었습니다!');
+    moveToMainPage();
+    btnSubmitEl.disabled = 'false';
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
 },{"./firebase":"src/js/firebase.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -353,7 +392,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11529" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10527" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

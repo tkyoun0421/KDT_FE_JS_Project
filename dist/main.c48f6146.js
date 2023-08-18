@@ -244,10 +244,9 @@ searchInputEl.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PU
 function makeProfileItem(doc) {
   var div = document.createElement('div');
   var a = document.createElement('a');
-  var template = "<div class=\"profile-info\">\n                        <span class=\"name\">".concat(doc.data().name, "</span>\n                        <span class=\"rank\">").concat(doc.data().rank, "</span>\n                        </div>\n                        ");
+  var template = /* html */"<div class=\"profile-info\">\n                        <div class=\"photo\"><img src=\"".concat(doc.data().photo, "\"</></div>\n                        <div class=\"name\"><p>").concat(doc.data().name, "</p></div>\n                        <div class=\"rank\"><p>").concat(doc.data().rank, "</p></div>\n                        <div class=\"email\"><p>").concat(doc.data().email, "</p></div>\n                        <div class=\"text\"><p>").concat(doc.data().self, "</p></div>\n                        </div>\n                        ");
   div.classList.add('profile-item');
   div.append(a);
-  div.style.backgroundImage = "url(".concat(doc.data().photo, ")");
   itemWrapEl.append(div);
   a.innerHTML = template;
   a.setAttribute('href', "./upload.html?id=".concat(doc.data().id));
@@ -278,7 +277,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "14902" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10527" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

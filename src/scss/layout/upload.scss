@@ -47,6 +47,10 @@
                     display: flex;
                     justify-content: end;
                     gap: 1rem;
+                    margin-top: 3rem;
+                    @include isMobile() {
+                        justify-content: center;
+                    }
                 }
                 .input-rank {
                     padding: 0.5rem 0.5rem;
